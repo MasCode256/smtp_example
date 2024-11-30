@@ -12,12 +12,12 @@ func sendEmail(to string, subject string, body string) error {
 	smtpHost := "smtp.mail.ru" // Замените на ваш SMTP-сервер
 	smtpPort := ":587"               // Порт SMTP-сервера
 	from := "my_address@mail.ru" // Ваш адрес электронной почты
-	password := "base64_text" // Ваш пароль
+	password := "password" // Ваш пароль
 
 	// Формирование сообщения
 	message := []byte("From: " + from + "\n" +
 		"To: " + to + "\n" +
-		"Subject: " + subject + "\n\n" +
+		"Subject: " + subject + "\nContent-Type: text/html; charset=\"utf-8\"" + "\n\n" +
 		body)
 
 	// Аутентификация
@@ -30,8 +30,8 @@ func sendEmail(to string, subject string, body string) error {
 
 func main() {
 	to := "receiver@mail.ru" // Замените на адрес получателя
-	subject := "Test Subject"
-	body := "This is a test email."
+	subject := "Hello, world!"
+	body := "<h1>This is content of the message.</h1>"
 
 	err := sendEmail(to, subject, body)
 	if err != nil {
